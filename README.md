@@ -49,6 +49,12 @@ Este proyecto no requiere instalación ni dependencias externas. Simplemente abr
 
 ---
 
+## 🎥 Video de demostración
+
+Mira este video para una presentación completa del editor, explicación de su funcionamiento y un ejemplo práctico:
+
+[Ver en YouTube](https://youtu.be/_bThy6UrTyg)
+
 ## 📎 Ejemplo de uso
 
 Puedes cargar este enlace compartido para ver un código guardado:
