@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editor en Vivo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <button onclick="toggleTheme()">🌗</button>
+    <select id="projectSelect" onchange="loadProject(this.value)">
+      <option value="">Proyecto actual</option>
+    </select>
+    <button onclick="saveProject()">💾 Guardar</button>
+    <button onclick="exportCode()">⬇️ Exportar</button>
+    <button onclick="shareCode()">🔗 Compartir</button>
+    <label>📂 Abrir <input type="file" onchange="handleImportFile(event)" hidden></label>
+    <button onclick="clearStorage()">🗑️ Borrar</button>
+    <span id="previewSize" style="margin-left: auto; padding: 0 1em;"></span>
+  </header>
+  <main id="container">
+    <div class="panel"><textarea id="html" placeholder="HTML"></textarea></div>
+    <div class="resizer"></div>
+    <div class="panel"><textarea id="css" placeholder="CSS"></textarea></div>
+    <div class="resizer"></div>
+    <div class="panel"><textarea id="js" placeholder="JavaScript"></textarea></div>
+    <div class="resizer"></div>
+    <div class="panel preview">
+      <iframe id="preview"></iframe>
+      <div id="console" class="console"></div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
