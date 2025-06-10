@@ -3,8 +3,6 @@ let currentResizer;
 let startX;
 let startWidthLeft;
 let startWidthRight;
-let prevPanel;
-let nextPanel;
 
 const resizers = document.querySelectorAll(".resizer");
 resizers.forEach(resizer => {
@@ -23,7 +21,6 @@ resizers.forEach(resizer => {
       const dx = e.clientX - startX;
       leftPanel.style.flex = `0 0 ${startWidthLeft + dx}px`;
       rightPanel.style.flex = `0 0 ${startWidthRight - dx}px`;
-      updatePreviewSize();
     }
 
     function onMouseUp() {
@@ -44,9 +41,7 @@ function updatePreview() {
 
   const code = `
     <html>
-    <head>
-      <style>${css}</style>
-    </head>
+    <head><style>${css}</style></head>
     <body>
       ${html}
       <script>
@@ -60,7 +55,7 @@ function updatePreview() {
         } catch (e) {
           console.error(e);
         }
-      </script>
+      <\/script>
     </body>
     </html>
   `;
@@ -71,12 +66,9 @@ function updatePreview() {
 }
 
 function updatePreviewSize() {
-  const previewFrame = document.getElementById("preview");
-  const toolbarLabel = document.getElementById("previewSize");
-  if (previewFrame && toolbarLabel) {
-    const rect = previewFrame.getBoundingClientRect();
-    toolbarLabel.textContent = `Vista previa: ${Math.round(rect.width)} x ${Math.round(rect.height)} px`;
-  }
+  const preview = document.getElementById("preview");
+  const span = document.getElementById("previewSize");
+  span.textContent = `📐 ${preview.offsetWidth}px × ${preview.offsetHeight}px`;
 }
 
 ["html", "css", "js"].forEach(id => {
@@ -187,10 +179,16 @@ function loadFromURL() {
   }
 }
 
+function formatCode() {
+  document.getElementById("html").value = html_beautify(document.getElementById("html").value);
+  document.getElementById("css").value = css_beautify(document.getElementById("css").value);
+  document.getElementById("js").value = js_beautify(document.getElementById("js").value);
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   loadProjectList();
   loadFromURL();
   const theme = localStorage.getItem("theme");
   if (theme === "dark") document.body.classList.add("dark");
-  updatePreviewSize();
+  updatePreview();
 });

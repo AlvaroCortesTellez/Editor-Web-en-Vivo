@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.toolbar {
+  background: #eee;
+  padding: 5px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+body.dark {
+  background: #111;
+  color: #ddd;
+}
+
+body.dark .toolbar {
+  background: #222;
+}
+
+.editor-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 14px;
+  background: #f9f9f9;
+  color: #000;
+  flex: 1;
+  overflow: auto;
+}
+
+body.dark textarea {
+  background: #222;
+  color: #eee;
+}
+
+iframe {
+  flex: 1;
+  border: none;
+  background: white;
+}
+
+.resizer {
+  width: 5px;
+  cursor: col-resize;
+  background: #ccc;
+}
+
+body.dark .resizer {
+  background: #444;
+}
+
+#console {
+  background: #000;
+  color: #0f0;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 12px;
+  height: 100px;
+  overflow-y: auto;
+  margin: 0;
+}

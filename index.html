@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Editor en Vivo</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editor Web en Vivo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/js-beautify/js/lib/beautify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-beautify/js/lib/beautify-html.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-beautify/js/lib/beautify-css.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-beautify/js/lib/beautify-js.js"></script>
 </head>
 <body>
-  <header>
-    <button onclick="toggleTheme()">🌗</button>
-    <select id="projectSelect" onchange="loadProject(this.value)">
-      <option value="">Proyecto actual</option>
-    </select>
+  <div class="toolbar">
+    <button onclick="toggleTheme()">🌙/☀️</button>
     <button onclick="saveProject()">💾 Guardar</button>
-    <button onclick="exportCode()">⬇️ Exportar</button>
+    <button onclick="exportCode()">📤 Exportar</button>
+    <button onclick="document.getElementById('fileInput').click()">📥 Importar</button>
+    <input type="file" id="fileInput" onchange="handleImportFile(event)" style="display: none;" />
+    <select id="projectSelect" onchange="loadProject(this.value)"></select>
+    <button onclick="clearStorage()">🗑 Borrar todo</button>
     <button onclick="shareCode()">🔗 Compartir</button>
-    <label>📂 Abrir <input type="file" onchange="handleImportFile(event)" hidden></label>
-    <button onclick="clearStorage()">🗑️ Borrar</button>
-    <span id="previewSize" style="margin-left: auto; padding: 0 1em;"></span>
-  </header>
-  <main id="container">
-    <div class="panel"><textarea id="html" placeholder="HTML"></textarea></div>
+    <button onclick="formatCode()">🧹 Formatear código</button>
+    <span id="previewSize"></span>
+  </div>
+  <div class="editor-container">
+    <textarea id="html" placeholder="HTML"></textarea>
     <div class="resizer"></div>
-    <div class="panel"><textarea id="css" placeholder="CSS"></textarea></div>
+    <textarea id="css" placeholder="CSS"></textarea>
     <div class="resizer"></div>
-    <div class="panel"><textarea id="js" placeholder="JavaScript"></textarea></div>
+    <textarea id="js" placeholder="JavaScript"></textarea>
     <div class="resizer"></div>
-    <div class="panel preview">
-      <iframe id="preview"></iframe>
-      <div id="console" class="console"></div>
-    </div>
-  </main>
+    <iframe id="preview"></iframe>
+  </div>
+  <pre id="console"></pre>
   <script src="script.js"></script>
 </body>
 </html>
